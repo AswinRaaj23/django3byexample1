@@ -9,12 +9,15 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import environ
 from pathlib import Path
 
+env = environ.Env()
+environ.Env.read_env()
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'aswinraaj23@gmail.com'
-EMAIL_HOST_PASSWORD = 'nibqmqkvvkcxybim'
+EMAIL_HOST_PASSWORD = env('PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -27,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = 'django-insecure-@@!o+5&9o199s$7&pv6qxbi)!fr5s0xr_w5^b58z9qua-k(6t9'
+SECRET_KEY = env('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -46,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
+    'taggit',
 ]
 
 MIDDLEWARE = [
